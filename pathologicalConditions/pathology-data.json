@@ -1,1 +1,132 @@
-
+{
+  "chapters": [
+    {
+      "id": 1,
+      "name": "Introduction to Preliminary Diagnosis of Oral Lesions",
+      "lesions": ["lingual-thyroid"]
+    },
+    {
+      "id": 2,
+      "name": "Inflammation and Repair",
+      "lesions": []
+    },
+    {
+      "id": 3,
+      "name": "Immunity and Immunologic Oral Lesions",
+      "lesions": []
+    },
+    {
+      "id": 4,
+      "name": "Infectious Diseases",
+      "lesions": []
+    },
+    {
+      "id": 5,
+      "name": "Developmental Disorders",
+      "lesions": []
+    },
+    {
+      "id": 6,
+      "name": "Genetics",
+      "lesions": []
+    },
+    {
+      "id": 7,
+      "name": "Neoplasia",
+      "lesions": []
+    },
+    {
+      "id": 8,
+      "name": "Nonneoplastic Diseases of Bone",
+      "lesions": []
+    },
+    {
+      "id": 9,
+      "name": "Oral Manifestations of Systemic Diseases",
+      "lesions": []
+    },
+    {
+      "id": 10,
+      "name": "Orofacial Pain and Temporomandibular Disorders",
+      "lesions": ["attrition"]
+    }
+  ],
+  "lesions": {
+    "lingual-thyroid": {
+      "name": "Lingual Thyroid",
+      "metadata": {
+        "age": "Any age (symptoms often at puberty/pregnancy)",
+        "gender": "Females > Males (4:1)",
+        "race": "No racial predilection",
+        "diagnosticProcess": ["Clinical", "Radiographic", "Laboratory"]
+      },
+      "sections": {
+        "etiology": {
+          "content": "<p><strong>Developmental condition</strong> where thyroid tissue fails to descend from the tongue to its normal position in the neck and remains trapped in the base of the tongue.</p><p>During early fetal development (around week 3-4), the thyroid gland starts at the back of the tongue and is supposed to migrate down to the front of the neck. In lingual thyroid, this migration doesn't happen properly, leaving thyroid tissue behind.</p>"
+        },
+        "location": {
+          "content": "<p><strong>Posterior dorsal tongue</strong>, specifically between the foramen cecum and the epiglottis at the base of the tongue.</p><p>This is exactly where the thyroid gland originates during development, which is why it makes sense that leftover tissue would be found here.</p>"
+        },
+        "clinical": {
+          "content": "<p>Presents as an <strong>exophytic nodular mass at the base of the tongue</strong>. Think of it as a bump or lump that's growing outward from the tongue surface.</p><ul><li><strong>Size varies:</strong> Can be small and asymptomatic, or large enough to cause problems</li><li><strong>Symptoms when present:</strong> Difficulty swallowing (dysphagia), difficulty speaking (dysphonia), or feeling like something is stuck in the throat (dyspnea)</li><li><strong>Usually discovered incidentally</strong> during routine examination in patients without symptoms</li></ul><div class='clinical-image-placeholder'>Clinical Image: Lingual Thyroid</div><div class='highlight-box'><strong>Important for Hygienists:</strong> If you see a mass at the back of a patient's tongue, don't assume it's something scary! Lingual thyroid is benign, but the patient needs referral for proper diagnosis and management.</div>"
+        },
+        "radiographic": {
+          "content": "<p><strong>Iodine thyroid scan</strong> is the gold standard diagnostic tool. The thyroid tissue naturally takes up iodine, so it will \"light up\" on the scan showing accumulation of isotope in the tongue.</p><p>This test serves two purposes:</p><ul><li>Confirms the mass is thyroid tissue</li><li>Checks if the patient has a normal thyroid gland in the neck (sometimes lingual thyroid is the ONLY thyroid tissue they have!)</li></ul><div class='clinical-image-placeholder'>Radiograph: Iodine Scan</div>"
+        },
+        "microscopic": {
+          "content": "<p><strong>Normal thyroid tissue</strong> - looks exactly like the thyroid tissue you'd find in a normal thyroid gland.</p><p>Under the microscope, you'll see follicles containing colloid (the protein-rich substance where thyroid hormones are stored). This confirms it's functioning thyroid tissue, not a tumor or other growth.</p><div class='clinical-image-placeholder'>Histopathology: Thyroid Follicles</div>"
+        },
+        "treatment": {
+          "content": "<p><strong>If asymptomatic:</strong> None required! Just monitor it over time.</p><p><strong>If causing problems:</strong></p><ul><li><strong>Thyroid hormone suppression:</strong> Medication to shrink the tissue by reducing its activity</li><li><strong>Surgical removal:</strong> Only if obstructive or causing significant symptoms</li><li><strong>Critical consideration:</strong> MUST check if patient has other thyroid tissue before removing! If this is their only functioning thyroid, removal would require lifelong thyroid hormone replacement</li></ul><div class='highlight-box'><strong>Risk Assessment:</strong> There's a small risk of hypothyroidism if the lingual thyroid tissue is removed without checking for normal thyroid tissue elsewhere. This is why the iodine scan is so important before any treatment decisions.</div>"
+        },
+        "differential": {
+          "content": "<p>Other conditions that might look similar and need to be ruled out:</p><ul><li><strong>Thyroglossal Duct Cyst:</strong> Also from thyroid development, but typically in the midline of the neck rather than the tongue</li><li><strong>Squamous Cell Carcinoma:</strong> Cancer that can occur at the base of the tongue - needs biopsy to differentiate</li></ul><p>The key difference: Lingual thyroid will show up positive on an iodine scan, while these other conditions won't.</p>"
+        },
+        "dentalHygiene": {
+          "content": "<ul><li><strong>Patient Education:</strong> Reassure patients this is a benign developmental condition, not cancer</li><li><strong>Referral:</strong> Any unexplained mass at the base of the tongue needs specialist evaluation - refer to oral surgeon or ENT</li><li><strong>Documentation:</strong> Clearly document location, size, and any symptoms patient reports</li><li><strong>Monitoring:</strong> If patient has known lingual thyroid, ask at each visit if they've noticed any changes in size or symptoms</li><li><strong>Be Gentle:</strong> Avoid trauma to the area during oral care - the tissue can bleed more than normal tissue</li></ul>"
+        },
+        "keyTakeaways": {
+          "content": "<ul><li>Lingual thyroid = thyroid tissue that didn't migrate properly during development</li><li>Found at base of tongue, between foramen cecum and epiglottis</li><li>More common in females (4:1 ratio)</li><li>Often asymptomatic and discovered incidentally</li><li>Diagnosed with iodine thyroid scan</li><li>Treatment only needed if causing symptoms</li><li>Must check for other thyroid tissue before any removal!</li></ul>"
+        }
+      }
+    },
+    "attrition": {
+      "name": "Attrition",
+      "metadata": {
+        "age": "Progressive with age (increased in adults 40+)",
+        "gender": "No gender predilection",
+        "race": "No racial predilection",
+        "diagnosticProcess": ["Clinical"]
+      },
+      "sections": {
+        "etiology": {
+          "content": "<p>Attrition is the <strong>wearing away of tooth structure through tooth-to-tooth contact</strong>. Think of it like grinding your teeth together - over time, this constant rubbing wears down the enamel and eventually the dentin underneath.</p><p><strong>Primary causes:</strong></p><ul><li><strong>Normal chewing (mastication):</strong> Everyone experiences some attrition from eating - it's a natural part of using your teeth throughout life</li><li><strong>Bruxism (teeth grinding):</strong> This is the major accelerator! People who grind their teeth, especially at night, develop attrition much faster than normal</li><li><strong>Clenching:</strong> Even without grinding movement, just pressing teeth together forcefully causes wear over time</li></ul>"
+        },
+        "clinical": {
+          "content": "<p>Attrition has very specific clinical features that help you identify it:</p><ul><li><strong>Flat, shiny surfaces:</strong> The wear creates smooth, polished areas - they literally shine because the enamel has been rubbed smooth</li><li><strong>Matching patterns:</strong> Upper and lower teeth that contact each other will show matching wear patterns (like puzzle pieces)</li><li><strong>Location:</strong> Incisal edges of anterior teeth and occlusal surfaces of posterior teeth - wherever teeth actually touch each other during function</li><li><strong>Dentin exposure:</strong> In advanced cases, you'll see yellow/brown dentin showing through where enamel has worn away completely</li><li><strong>Smooth margins:</strong> Unlike fractures or chips, attrition creates smooth, rounded edges</li></ul><div class='highlight-box'><strong>Clinical Recognition Tip:</strong> If you see flat, shiny wear surfaces on teeth that contact each other, it's attrition. If the wear is in areas that DON'T contact opposing teeth, it's something else (abrasion or erosion).</div>"
+        },
+        "uniqueCharacteristics": {
+          "content": "<p><strong>The key identifier for attrition:</strong> It ONLY occurs on surfaces where teeth contact each other. This is what separates it from other types of wear.</p><ul><li><strong>Bilateral symmetry:</strong> Typically affects both sides of the mouth similarly</li><li><strong>Progressive:</strong> Gets worse over time if the causative behavior (grinding/clenching) continues</li><li><strong>May see compensatory eruption:</strong> Teeth sometimes erupt more to compensate for the wear, maintaining vertical dimension</li></ul>"
+        },
+        "consequences": {
+          "content": "<ul><li><strong>Tooth sensitivity:</strong> When dentin gets exposed, patients experience sensitivity to temperature changes and sweet foods (dentin has tubules that connect to the nerve)</li><li><strong>Loss of vertical dimension:</strong> Severe attrition can make teeth so short that the lower face appears collapsed, changing facial appearance</li><li><strong>TMJ problems:</strong> Changes in bite from uneven wear can stress the jaw joint, causing pain and dysfunction</li><li><strong>Aesthetic concerns:</strong> Short, worn teeth affect smile appearance</li><li><strong>Pulp exposure risk:</strong> Severe cases can wear through to the pulp chamber, requiring root canal treatment</li></ul>"
+        },
+        "stages": {
+          "content": "<p><strong>Mild Attrition:</strong></p><ul><li>Slight flattening of incisal edges or cusp tips</li><li>Enamel still intact</li><li>Usually no symptoms</li><li>Normal aging process</li></ul><p><strong>Moderate Attrition:</strong></p><ul><li>Noticeable wear facets</li><li>Dentin exposure beginning to show</li><li>May have some sensitivity</li><li>Loss of anatomical contours</li></ul><p><strong>Severe Attrition:</strong></p><ul><li>Significant tooth structure loss</li><li>Extensive dentin exposure</li><li>Loss of vertical dimension visible</li><li>May affect multiple teeth severely</li><li>High sensitivity or pulp involvement possible</li></ul>"
+        },
+        "treatment": {
+          "content": "<p><strong>Management depends on severity and cause:</strong></p><p><strong>Mild cases:</strong></p><ul><li>Monitor and document progression</li><li>Patient education about grinding/clenching</li><li>Desensitizing treatments if needed</li></ul><p><strong>Moderate to severe cases:</strong></p><ul><li><strong>Night guard (occlusal splint):</strong> Protects teeth from further grinding damage during sleep - this is the #1 treatment for bruxism-related attrition</li><li><strong>Stress management:</strong> Since grinding often relates to stress, addressing underlying anxiety can help</li><li><strong>Restorative treatment:</strong> Crowns, veneers, or onlays to restore tooth height and function</li><li><strong>Full mouth reconstruction:</strong> Severe cases may need comprehensive treatment to restore vertical dimension</li></ul><div class='highlight-box'><strong>Prevention is Key:</strong> Once tooth structure is lost, it doesn't grow back! Early intervention with night guards and behavior modification is critical.</div>"
+        },
+        "dentalHygiene": {
+          "content": "<ul><li><strong>Screening:</strong> Always check for signs of attrition during exam - document wear patterns and severity</li><li><strong>Ask about grinding:</strong> Many patients don't realize they grind their teeth at night - ask about jaw soreness, headaches, or if partners have heard grinding sounds</li><li><strong>Patient education:</strong> Explain the difference between normal wear and excessive wear from grinding</li><li><strong>Desensitizing care:</strong> Use desensitizing toothpaste recommendations for patients with exposed dentin</li><li><strong>Night guard maintenance:</strong> For patients with guards, check fit and cleanliness, provide care instructions</li><li><strong>Polishing caution:</strong> Be gentle with polishing on worn areas - dentin is softer than enamel and removes more easily</li><li><strong>Stress assessment:</strong> Young patients with significant attrition may need discussion about stress management</li></ul>"
+        },
+        "documentation": {
+          "content": "<p><strong>Chart entries should include:</strong></p><ul><li>Specific teeth affected and surfaces involved</li><li>Severity level (mild/moderate/severe)</li><li>Presence of dentin exposure</li><li>Patient-reported symptoms (sensitivity, jaw pain, etc.)</li><li>Suspected cause (normal aging vs. bruxism)</li><li>Previous or current treatment (night guard, restorations)</li></ul><p><strong>Example documentation:</strong> \"Moderate attrition noted on incisal edges of teeth #7-10 with visible dentin exposure. Patient reports no sensitivity but acknowledges grinding teeth during sleep. Night guard recommended.\"</p>"
+        },
+        "keyTakeaways": {
+          "content": "<ul><li>Attrition = tooth-to-TOOTH contact wear (not from external objects)</li><li>Appears as flat, shiny surfaces on contacting teeth</li><li>Primary accelerator is bruxism (teeth grinding)</li><li>Progressive condition that worsens without intervention</li><li>Night guards are first-line treatment for bruxism-related attrition</li><li>Exposed dentin causes sensitivity - recommend desensitizing products</li><li>Document location, severity, and symptoms at each visit</li><li>Early intervention prevents severe tooth structure loss</li></ul>"
+        }
+      }
+    }
+  }
+}
