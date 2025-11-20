@@ -1,1 +1,717 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Pathology Reference</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: #f5f7fa;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            background: rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-header p {
+            font-size: 0.85em;
+            opacity: 0.8;
+        }
+
+        .search-box {
+            padding: 20px;
+            background: rgba(0,0,0,0.15);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            background: rgba(255,255,255,0.95);
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        .chapter {
+            margin-bottom: 5px;
+        }
+
+        .chapter-header {
+            padding: 14px 20px;
+            background: rgba(0,0,0,0.15);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .chapter-header:hover {
+            background: rgba(0,0,0,0.25);
+            border-left-color: #3498db;
+        }
+
+        .chapter-header.active {
+            background: rgba(0,0,0,0.25);
+        }
+
+        .chapter-number {
+            opacity: 0.6;
+            font-size: 0.85em;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+            opacity: 0.7;
+            font-size: 0.8em;
+        }
+
+        .arrow.expanded {
+            transform: rotate(90deg);
+        }
+
+        .lesion-list {
+            display: none;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .lesion-list.show {
+            display: block;
+        }
+
+        .lesion-item {
+            padding: 12px 20px 12px 45px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            font-size: 0.9em;
+        }
+
+        .lesion-item:hover {
+            background: rgba(255,255,255,0.1);
+            border-left-color: #3498db;
+        }
+
+        .lesion-item.active {
+            background: rgba(52, 152, 219, 0.3);
+            border-left-color: #3498db;
+            font-weight: 500;
+        }
+
+        .lesion-item.hidden {
+            display: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0;
+            background: #f5f7fa;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 100px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .welcome h1 {
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .welcome p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .lesion-content {
+            display: none;
+        }
+
+        .lesion-content.active {
+            display: block;
+        }
+
+        /* Lesion Header */
+        .lesion-header {
+            background: white;
+            padding: 40px;
+            border-bottom: 3px solid #3498db;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .lesion-title {
+            font-size: 2.8em;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        /* Metadata Bar */
+        .metadata-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .metadata-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #3498db;
+        }
+
+        .metadata-label {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #7f8c8d;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .metadata-value {
+            color: #2c3e50;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .diagnostic-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #2c3e50;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        /* Content Sections */
+        .content-wrapper {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-card {
+            background: white;
+            padding: 35px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid #3498db;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .section-icon {
+            font-size: 1.5em;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .section-content {
+            color: #34495e;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .section-content p {
+            margin-bottom: 15px;
+        }
+
+        .section-content ul {
+            margin: 15px 0 15px 25px;
+        }
+
+        .section-content li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .section-content strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f8ff 100%);
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box strong {
+            color: #2980b9;
+        }
+
+        .clinical-image-placeholder {
+            background: #ecf0f1;
+            padding: 60px;
+            text-align: center;
+            border-radius: 8px;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        /* Special section colors */
+        .section-card.dh-considerations {
+            border-left-color: #e74c3c;
+        }
+
+        .section-card.dh-considerations .section-icon {
+            color: #e74c3c;
+        }
+
+        .section-card.key-takeaways {
+            border-left-color: #27ae60;
+            background: linear-gradient(135deg, #ffffff 0%, #f0fff4 100%);
+        }
+
+        .section-card.key-takeaways .section-icon {
+            color: #27ae60;
+        }
+
+        /* Scrollbar styling */
+        .nav-content::-webkit-scrollbar,
+        .main-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .nav-content::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .nav-content::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 5px;
+        }
+
+        .nav-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .main-content::-webkit-scrollbar-track {
+            background: #ecf0f1;
+        }
+
+        .main-content::-webkit-scrollbar-thumb {
+            background: #bdc3c7;
+            border-radius: 5px;
+        }
+
+        .main-content::-webkit-scrollbar-thumb:hover {
+            background: #95a5a6;
+        }
+
+        /* Loading state */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 280px;
+            }
+            
+            .lesion-header {
+                padding: 25px;
+            }
+            
+            .lesion-title {
+                font-size: 2em;
+            }
+            
+            .content-wrapper {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>Pathology Reference</h1>
+                <p>Dental Hygiene Study Guide</p>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search for a condition...">
+            </div>
+            <div class="nav-content" id="navContent">
+                <div class="loading">Loading chapters...</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <div class="welcome">
+                <h1>Welcome!</h1>
+                <p>Select any condition from the sidebar to explore comprehensive information including clinical features, treatment approaches, and dental hygiene considerations.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Section configuration - define available sections and their display properties
+        const sectionConfig = {
+            etiology: {
+                title: "Etiology & Cause",
+                icon: "🔬"
+            },
+            location: {
+                title: "Location",
+                icon: "📍"
+            },
+            clinical: {
+                title: "Clinical Features",
+                icon: "👁️"
+            },
+            radiographic: {
+                title: "Radiographic Features",
+                icon: "📊"
+            },
+            microscopic: {
+                title: "Microscopic Features",
+                icon: "🔬"
+            },
+            treatment: {
+                title: "Treatment & Management",
+                icon: "💊"
+            },
+            consequences: {
+                title: "Consequences & Complications",
+                icon: "⚠️"
+            },
+            documentation: {
+                title: "Clinical Documentation Tips",
+                icon: "📋"
+            },
+            keyTakeaways: {
+                title: "Key Takeaways",
+                icon: "🎯",
+                specialClass: "key-takeaways"
+            },
+            uniqueCharacteristics: {
+                title: "Unique Characteristics",
+                icon: "⭐"
+            },
+            differential: {
+                title: "Differential Diagnosis",
+                icon: "🔍"
+            },
+            dentalHygiene: {
+                title: "Dental Hygiene Considerations",
+                icon: "🦷",
+                specialClass: "dh-considerations"
+            },
+            stages: {
+                title: "Stages & Progression",
+                icon: "📈"
+            }
+        };
+
+        let pathologyData = null;
+        let chapters = null;
+
+        // Load JSON data
+        async function loadData() {
+            try {
+                const response = await fetch('pathology-data.json');
+                const data = await response.json();
+                pathologyData = data.lesions;
+                chapters = data.chapters;
+                generateNav();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('navContent').innerHTML = 
+                    '<div class="loading" style="color: #e74c3c;">Error loading data. Make sure pathology-data.json is in the same folder.</div>';
+            }
+        }
+
+        // Generate Navigation
+        function generateNav() {
+            const navContent = document.getElementById('navContent');
+            navContent.innerHTML = '';
+
+            chapters.forEach(chapter => {
+                // Skip chapters with no lesions
+                if (!chapter.lesions || chapter.lesions.length === 0) return;
+
+                const chapterDiv = document.createElement('div');
+                chapterDiv.className = 'chapter';
+
+                const header = document.createElement('div');
+                header.className = 'chapter-header';
+                header.innerHTML = `
+                    <div>
+                        <span class="chapter-number">${chapter.id}.</span> ${chapter.name}
+                    </div>
+                    <span class="arrow">▶</span>
+                `;
+                
+                const lesionList = document.createElement('div');
+                lesionList.className = 'lesion-list';
+
+                chapter.lesions.forEach(lesionId => {
+                    const lesion = pathologyData[lesionId];
+                    if (lesion) {
+                        const lesionItem = document.createElement('div');
+                        lesionItem.className = 'lesion-item';
+                        lesionItem.textContent = lesion.name;
+                        lesionItem.dataset.lesionId = lesionId;
+                        lesionItem.onclick = () => showLesion(lesionId);
+                        lesionList.appendChild(lesionItem);
+                    }
+                });
+
+                header.onclick = () => {
+                    const arrow = header.querySelector('.arrow');
+                    arrow.classList.toggle('expanded');
+                    lesionList.classList.toggle('show');
+                    header.classList.toggle('active');
+                };
+
+                chapterDiv.appendChild(header);
+                chapterDiv.appendChild(lesionList);
+                navContent.appendChild(chapterDiv);
+            });
+        }
+
+        // Show Lesion Content
+        function showLesion(lesionId) {
+            const lesion = pathologyData[lesionId];
+            if (!lesion) return;
+
+            // Hide welcome
+            document.querySelector('.welcome').style.display = 'none';
+            
+            // Remove existing content
+            document.querySelectorAll('.lesion-content').forEach(el => el.remove());
+
+            // Create new content
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'lesion-content active';
+            
+            // Build header with metadata
+            let html = `
+                <div class="lesion-header">
+                    <h1 class="lesion-title">${lesion.name}</h1>
+                    ${buildMetadataBar(lesion.metadata)}
+                </div>
+                <div class="content-wrapper">
+            `;
+
+            // Build sections dynamically based on what exists in the lesion data
+            if (lesion.sections) {
+                Object.keys(lesion.sections).forEach(sectionKey => {
+                    const section = lesion.sections[sectionKey];
+                    const config = sectionConfig[sectionKey];
+                    
+                    if (config) {
+                        const specialClass = config.specialClass ? config.specialClass : '';
+                        html += `
+                            <div class="section-card ${specialClass}">
+                                <div class="section-header">
+                                    <span class="section-icon">${config.icon}</span>
+                                    <h2 class="section-title">${config.title}</h2>
+                                </div>
+                                <div class="section-content">
+                                    ${section.content}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+
+            html += '</div>';
+            contentDiv.innerHTML = html;
+            document.getElementById('mainContent').appendChild(contentDiv);
+
+            // Update sidebar active state
+            document.querySelectorAll('.lesion-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.lesionId === lesionId) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Scroll to top
+            document.getElementById('mainContent').scrollTop = 0;
+        }
+
+        // Build metadata bar
+        function buildMetadataBar(metadata) {
+            if (!metadata) return '';
+
+            let html = '<div class="metadata-bar">';
+
+            // Age
+            if (metadata.age) {
+                html += `
+                    <div class="metadata-item">
+                        <div class="metadata-label">Age</div>
+                        <div class="metadata-value">${metadata.age}</div>
+                    </div>
+                `;
+            }
+
+            // Gender
+            if (metadata.gender) {
+                html += `
+                    <div class="metadata-item">
+                        <div class="metadata-label">Gender</div>
+                        <div class="metadata-value">${metadata.gender}</div>
+                    </div>
+                `;
+            }
+
+            // Race
+            if (metadata.race) {
+                html += `
+                    <div class="metadata-item">
+                        <div class="metadata-label">Race</div>
+                        <div class="metadata-value">${metadata.race}</div>
+                    </div>
+                `;
+            }
+
+            // Diagnostic Process
+            if (metadata.diagnosticProcess && metadata.diagnosticProcess.length > 0) {
+                html += `
+                    <div class="metadata-item">
+                        <div class="metadata-label">Diagnostic Process</div>
+                        <div class="diagnostic-tags">
+                            ${metadata.diagnosticProcess.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // You can easily add more metadata fields here as needed
+            // Example: prevalence, severity, etc.
+
+            html += '</div>';
+            return html;
+        }
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            document.querySelectorAll('.lesion-item').forEach(item => {
+                const lesionName = item.textContent.toLowerCase();
+                if (lesionName.includes(searchTerm)) {
+                    item.classList.remove('hidden');
+                    // Show parent chapter
+                    const chapter = item.closest('.chapter');
+                    const lesionList = item.closest('.lesion-list');
+                    lesionList.classList.add('show');
+                    chapter.querySelector('.arrow').classList.add('expanded');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            // Hide chapters with no visible lesions
+            document.querySelectorAll('.chapter').forEach(chapter => {
+                const visibleLesions = chapter.querySelectorAll('.lesion-item:not(.hidden)');
+                if (visibleLesions.length === 0 && searchTerm !== '') {
+                    chapter.style.display = 'none';
+                } else {
+                    chapter.style.display = 'block';
+                }
+            });
+        });
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>
